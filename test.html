@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>구구단 출력</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h2>구구단 출력</h2>
+<p>홀수를 입력하면 홀수 단의 홀수식과 홀수값이 나오고, 짝수를 입력하면 짝수 단의 짝수식과 짝수값이 나옵니다.</p>
+
+<label for="numberInput">숫자 입력: </label>
+<input type="number" id="numberInput">
+<button id="generateTable">구구단 출력</button>
+
+<div id="output"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#generateTable').click(function() {
+            var inputNumber = Number($('#numberInput').val());
+            var output = '';
+
+            if (isNaN(inputNumber)) {
+                output = '유효한 숫자를 입력하세요.';
+            } else {
+                var start = 1;
+                var end = 9;
+
+                if (inputNumber % 2 === 0) {
+                    output += '<h3>' + inputNumber + '단의 짝수식과 짝수값</h3>';
+                    for (var i = start; i <= end; i++) {
+                        if (i % 2 === 0) {
+                            output += inputNumber + ' x ' + i + ' = ' + (inputNumber * i) + '<br>';
+                        }
+                    }
+                } else {
+                    output += '<h3>' + inputNumber + '단의 홀수식과 홀수값</h3>';
+                    for (var i = start; i <= end; i++) {
+                        if (i % 2 !== 0) {
+                            output += inputNumber + ' x ' + i + ' = ' + (inputNumber * i) + '<br>';
+                        }
+                    }
+                }
+            }
+
+            $('#output').html(output);
+        });
+    });
+</script>
+
+</body>
+</html>
